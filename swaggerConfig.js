@@ -4,7 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 const options = {
   swaggerDefinition: {
     info: {
-      title: "sevae Docs",
+      title: "ArApp Docs",
       version: "1.0.0",
     },
   },
