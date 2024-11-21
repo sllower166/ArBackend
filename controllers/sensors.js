@@ -27,9 +27,9 @@ const getSensorById = async (req, res) => {
       `Última lectura: ${formattedDate}`;
     
     const distances = {
-      distancia_R: `${sensor.distancia_R} cm`,
-      distancia_S: `${sensor.distancia_S} cm`,
-      distancia_T: `${sensor.distancia_T} cm`,
+      distancia_R: sensor.distancia_R,
+      distancia_S: sensor.distancia_S,
+      distancia_T: sensor.distancia_T,
     };
 
     res.status(200).json({
