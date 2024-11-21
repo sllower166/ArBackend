@@ -1,4 +1,5 @@
 const Sensor = require("../models/Sensors.js");
+const { format } = require("date-fns");
 
 const getSensorById = async (req, res) => {
   try {
@@ -15,8 +16,10 @@ const getSensorById = async (req, res) => {
       });
     }
 
+    const formattedDate = format(new Date(`${sensor.fecha}T${sensor.hora}`), "dd/MM/yy HH:mm");
+
     // Build the response
-    const responseMessage = `Temperatura: ${sensor.temperatura}\n\n Humedad: ${sensor.humedad}\n\n Presión: ${sensor.presion}\n\n Última lectura: ${sensor.fecha} ${sensor.hora}`;
+    const responseMessage = `Temperatura: ${sensor.temperatura}\n\n Humedad: ${sensor.humedad}\n\n Presión: ${sensor.presion}\n\n Última lectura: ${formattedDate}`;
     const distances = {
       distancia_R: sensor.distancia_R,
       distancia_S: sensor.distancia_S,
