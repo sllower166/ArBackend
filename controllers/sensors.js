@@ -18,7 +18,7 @@ const getSensorById = async (req, res) => {
     }
 
     // Format the date and time using date-fns
-    const formattedDate = format(new Date(`${sensor.fecha}T${sensor.hora}`), "dd/MM/yy HH:mm");
+    const formattedDate = format(new Date(`${sensor.fecha}T${sensor.hora}`), "dd-MM-yy HH:mm");
 
     // Build the response with units of measure
     const responseMessage = `Temperatura: ${sensor.temperatura} °C\n\n` +
