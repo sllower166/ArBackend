@@ -1,8 +1,10 @@
 const Sensor = require("../models/Sensors.js");
+const { format } = require("date-fns");
 
 const getSensorById = async (req, res) => {
   try {
     const { id } = req.params;
+
     // Find the sensor by ID and retrieve the most recent record based on date or time
     const sensor = await Sensor.findById(id)
       .sort({ fecha: -1, hora: -1 }) // Sort by date and time in descending order to get the most recent
@@ -15,12 +17,19 @@ const getSensorById = async (req, res) => {
       });
     }
 
-    // Build the response
-    const responseMessage = `Temperatura: ${sensor.temperatura}\n\n Humedad: ${sensor.humedad}\n\n Presión: ${sensor.presion}\n\n Última lectura: ${sensor.fecha} ${sensor.hora}`;
+    // Format the date and time using date-fns
+    const formattedDate = format(new Date(`${sensor.fecha}T${sensor.hora}`), "dd/MM/yy HH:mm");
+
+    // Build the response with units of measure
+    const responseMessage = `Temperatura: ${sensor.temperatura} °C\n\n` +
+      `Humedad: ${sensor.humedad} %\n\n` +
+      `Presión: ${sensor.presion} hPa\n\n` +
+      `Última lectura: ${formattedDate}`;
+    
     const distances = {
-      distancia_R: sensor.distancia_R,
-      distancia_S: sensor.distancia_S,
-      distancia_T: sensor.distancia_T,
+      distancia_R: `${sensor.distancia_R} cm`,
+      distancia_S: `${sensor.distancia_S} cm`,
+      distancia_T: `${sensor.distancia_T} cm`,
     };
 
     res.status(200).json({
