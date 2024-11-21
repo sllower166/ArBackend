@@ -16,9 +16,9 @@ const getSensorById = async (req, res) => {
     }
 
     // Build the response
-    const responseMessage = `Temperatura: ${sensor.temperatura}°C\n\n` +
-    `Humedad: ${sensor.humedad}%\n\n` +
-    `Presión: ${sensor.presion}hPa\n\n` +
+    const responseMessage = `Temperatura: ${sensor.temperatura} °C\n\n` +
+    `Humedad: ${sensor.humedad} %\n\n` +
+    `Presión: ${sensor.presion} hPa\n\n` +
     `Última lectura: ${sensor.fecha} ${sensor.hora.substring(0, 5)}`;
     const distances = {
       distancia_R: sensor.distancia_R,
